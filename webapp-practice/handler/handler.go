@@ -8,19 +8,14 @@ import (
 
 var Module = fx.Provide(HandlerMap)
 
-//type HandlerValue struct {
-//	handler http.Handler
-//}
-
-func HandlerMap(logger *log.Logger) ([]http.Handler, error) {
+func HandlerMap(logger *log.Logger) (map[string]http.Handler, error) {
 
 	logger.Print("Executing handlerMap")
 
-	res := []http.Handler{
-		rootHandler(logger),
-		helloHandler(logger),
-	}
-	return res, nil
+	res1 := make(map[string]http.Handler)
+	res1["/"] = rootHandler(logger)
+	res1["/hello"] = helloHandler(logger)
+	return res1, nil
 }
 
 func rootHandler(logger *log.Logger) http.Handler {

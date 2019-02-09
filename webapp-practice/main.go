@@ -8,10 +8,11 @@ import (
 	"net/http"
 )
 
-func Register(mux *http.ServeMux, h []http.Handler) {
+func Register(mux *http.ServeMux, m map[string]http.Handler) {
 
-	mux.Handle("/", h[0])
-	mux.Handle("/hello", h[1])
+	for k, v := range m {
+		mux.Handle(k, v)
+	}
 }
 
 func main() {
