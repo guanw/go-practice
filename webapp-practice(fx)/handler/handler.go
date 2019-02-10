@@ -8,8 +8,13 @@ import (
 
 var Module = fx.Provide(HandlerMap)
 
-func HandlerMap(logger *log.Logger) (map[string]http.Handler, error) {
+type HandlerParams struct {
+	fx.In
+	Logger *log.Logger
+}
 
+func HandlerMap(params HandlerParams) (map[string]http.Handler, error) {
+	logger := params.Logger
 	logger.Print("Executing handlerMap")
 
 	res1 := make(map[string]http.Handler)

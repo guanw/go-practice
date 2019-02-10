@@ -9,7 +9,14 @@ import (
 
 var Module = fx.Provide(NewMux)
 
-func NewMux(lc fx.Lifecycle, logger *log.Logger) *http.ServeMux {
+type MuxParams struct {
+	fx.In
+	Logger *log.Logger
+}
+
+func NewMux(lc fx.Lifecycle, params MuxParams) *http.ServeMux {
+	logger := params.Logger
+
 	logger.Print("Executing NewMux.")
 
 	mux := http.NewServeMux()

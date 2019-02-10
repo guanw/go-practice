@@ -9,7 +9,6 @@ import (
 )
 
 func Register(mux *http.ServeMux, m map[string]http.Handler) {
-
 	for k, v := range m {
 		mux.Handle(k, v)
 	}
