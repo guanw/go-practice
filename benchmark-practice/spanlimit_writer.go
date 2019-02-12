@@ -1,11 +1,10 @@
 package benchmarkpractice
 
 import (
-	"sync"
-
-	lru "github.com/hashicorp/golang-lru"
+	"github.com/hashicorp/golang-lru"
 	"github.com/jaegertracing/jaeger/model"
 	"github.com/jaegertracing/jaeger/storage/spanstore"
+	"sync"
 )
 
 type condition int
@@ -67,8 +66,8 @@ func (w *SpanLimitWriter) WriteSpan(span *model.Span) error {
 func (w *SpanLimitWriter) updateCacheState(span *model.Span) condition {
 	// writer wraps parallel processor which spawns several goroutines to process messages
 	// so we will need to lock the localCache for get/set operations
-	w.lock.Lock()
-	defer w.lock.Unlock()
+	//w.lock.Lock()
+	//defer w.lock.Unlock()
 	val, found := w.traceIDtoSpanCount.Get(span.TraceID)
 	if !found {
 		w.traceIDtoSpanCount.Add(span.TraceID, 1)
