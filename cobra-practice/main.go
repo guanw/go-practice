@@ -1,6 +1,6 @@
 package main
 
-import "github.com/go-practice/cobra-practice/cmd"
+import "github.com/judew/go-practice/cobra-practice/cmd"
 
 func main() {
 	cmd.Execute()
