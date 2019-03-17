@@ -1,0 +1,6 @@
+go get github.com/spf13/cobra/cobra
+cobra init in an empty folder
+
+cobra add [command]
+
+go install & cobra-auto [command]
