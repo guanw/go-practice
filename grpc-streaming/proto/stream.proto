@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package stream;
+
+service DnsService {
+    rpc Echo(Req) returns (stream Resp) {}
+}
+
+message Req {
+    int32 id = 1;
+}
+
+message Resp {
+    string service = 1;
+    string host = 2;
+}
